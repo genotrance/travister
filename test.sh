@@ -1,5 +1,7 @@
 #! /bin/bash
 
+set -e
+
 alias ix="curl -F 'f:1=<-' ix.io"
 gclone() { git clone "https://github.com/$1" $2 $3 $4 $5 $6 $7 $8 $9; }
 gco () { git checkout $1; }
