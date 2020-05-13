@@ -10,7 +10,7 @@ cd test
 
 gclone nimterop/nimterop
 cd nimterop
-gco issue196-2
+gco clifile
 nimble develop -y
 nimble buildTimeit
 nimble bt
