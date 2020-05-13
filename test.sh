@@ -1,6 +1,16 @@
-#! /bin/bash
+if [[ "$TRAVIS_OS_NAME" == "osx" ]]
+then
+  brew update
+  brew install boehmgc
+fi
 
 set -e
+
+if [[ "$TRAVIS_OS_NAME" == "osx" ]]
+then
+  unset -f cd
+  shell_session_update() { :; }
+fi
 
 alias ix="curl -F 'f:1=<-' ix.io"
 gclone() { git clone "https://github.com/$1" $2 $3 $4 $5 $6 $7 $8 $9; }
