@@ -26,4 +26,4 @@ install:
   - source travis.sh
 
 script:
-  - . ./test.sh
+  - bash ./test.sh
