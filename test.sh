@@ -1,3 +1,12 @@
+# Settings
+export NIMTEROP=trerror
+
+# Shortcuts
+alias ix="curl -F 'f:1=<-' ix.io"
+gclone() { git clone "https://github.com/$1" $2 $3 $4 $5 $6 $7 $8 $9; }
+gco () { git checkout $1; }
+
+# OSX setup
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]
 then
   brew update
@@ -12,40 +21,45 @@ then
   shell_session_update() { :; }
 fi
 
-alias ix="curl -F 'f:1=<-' ix.io"
-gclone() { git clone "https://github.com/$1" $2 $3 $4 $5 $6 $7 $8 $9; }
-gco () { git checkout $1; }
-
 rm -rf test
 mkdir test
 cd test
 
+# Nimterop setup
 gclone nimterop/nimterop
 cd nimterop
-gco clifile
+gco $NIMTEROP
 nimble develop -y
 nimble buildTimeit
 nimble bt
 cd ..
 
-gclone genotrance/nimpcre
-cd nimpcre
-nimble develop -y
-nimble test
-cd ..
+# Test wrappers
+test() {
+  gclone $1/$2
+  cd $2
+  if [[ -n $3 ]]; then
+    gco $3
+  fi
+  nimble develop -y
+  nimble test
+  cd ..
+}
 
-gclone genotrance/nimarchive
-cd nimarchive
-nimble develop -y
-nimble test
-gco nimteroptest1
-nimble test
-cd ..
+# Extra test a branch
+testBranch() {
+  cd $1
+  gco $2
+  nimble test
+  cd ..
+}
 
-gclone genotrance/nimgit2
-cd nimgit2
-nimble develop -y
-nimble test
-gco nimteroptest1
-nimble test
-cd ..
+test genotrance nimpcre
+
+test genotrance nimarchive
+testBranch nimarchive nimteroptest1
+
+test genotrance nimgit2
+testBranch nimgit2 nimteroptest1
+
+# test genotrance nimbass nimterop
