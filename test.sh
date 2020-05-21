@@ -38,7 +38,7 @@ cd ..
 test() {
   gclone $1/$2
   cd $2
-  if [[ -n $3 ]]; then
+  if [[ "$3" != "" ]]; then
     gco $3
   fi
   nimble develop -y
