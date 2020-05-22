@@ -1,5 +1,5 @@
 # Settings
-export NIMTEROP=trerror
+export NIMTEROP=master
 
 # Shortcuts
 alias ix="curl -F 'f:1=<-' ix.io"
@@ -54,12 +54,23 @@ testBranch() {
   cd ..
 }
 
-test genotrance nimpcre
+gclone genotrance/nimarchive
+cd nimarchive
+gco nimteroptest1
+nimble develop -y
+cd ..
 
-test genotrance nimarchive
-testBranch nimarchive nimteroptest1
+gclone dom96/choosenim
+cd choosenim
+nimble install -y -d
+nimble test
 
-test genotrance nimgit2
-testBranch nimgit2 nimteroptest1
+# test genotrance nimpcre
+
+# test genotrance nimarchive
+# testBranch nimarchive nimteroptest1
+
+# test genotrance nimgit2
+# testBranch nimgit2 nimteroptest1
 
 # test genotrance nimbass nimterop
