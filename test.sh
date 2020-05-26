@@ -6,6 +6,23 @@ alias ix="curl -F 'f:1=<-' ix.io"
 gclone() { git clone "https://github.com/$1" $2 $3 $4 $5 $6 $7 $8 $9; }
 gco () { git checkout $1; }
 
+gcloneBranch() {
+  gclone $1/$2
+  cd $2
+  if [[ "$3" != "" ]]; then
+    gco $3
+  fi
+  nimble develop -y
+  cd ..
+}
+
+test() {
+  gcloneBranch $1 $2 $3
+  cd $2
+  nimble test
+  cd ..
+}
+
 # OSX setup
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]
 then
@@ -26,51 +43,18 @@ mkdir test
 cd test
 
 # Nimterop setup
-gclone nimterop/nimterop
+gcloneBranch nimterop nimterop $NIMTEROP
 cd nimterop
-gco $NIMTEROP
-nimble develop -y
 nimble buildTimeit
 nimble bt
 cd ..
 
-# Test wrappers
-test() {
-  gclone $1/$2
-  cd $2
-  if [[ "$3" != "" ]]; then
-    gco $3
-  fi
-  nimble develop -y
-  nimble test
-  cd ..
-}
+test genotrance nimpcre
 
-# Extra test a branch
-testBranch() {
-  cd $1
-  gco $2
-  nimble test
-  cd ..
-}
+test genotrance nimarchive
+test dom96 choosenim
 
-gclone genotrance/nimarchive
-cd nimarchive
-gco nimteroptest1
-nimble develop -y
-cd ..
-
-gclone dom96/choosenim
-cd choosenim
-nimble install -y -d
-nimble test
-
-# test genotrance nimpcre
-
-# test genotrance nimarchive
-# testBranch nimarchive nimteroptest1
-
-# test genotrance nimgit2
-# testBranch nimgit2 nimteroptest1
+test genotrance nimgit2
+test disruptek gittyup
 
 # test genotrance nimbass nimterop
