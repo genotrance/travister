@@ -52,7 +52,14 @@ cd ..
 test genotrance nimpcre
 
 test genotrance nimarchive
-test dom96 choosenim
+if [[ "$BRANCH" != "0.20.2" ]];
+then
+  gclone dom96/choosenim
+  cd choosenim
+  nimble install -d -y  # Cannot nimble develop binary package
+  nimble test
+  cd ..
+fi
 
 test genotrance nimgit2
 test disruptek gittyup
