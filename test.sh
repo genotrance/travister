@@ -51,7 +51,7 @@ cd ..
 
 test genotrance nimpcre
 
-test genotrance nimarchive conanjbb
+test genotrance nimarchive
 if [[ "$BRANCH" != "0.20.2" ]];
 then
   gclone dom96/choosenim
@@ -61,7 +61,7 @@ then
   cd ..
 fi
 
-test genotrance nimgit2 conanjbb
+test genotrance nimgit2
 
 if [[ "$BRANCH" != "0.20.2" ]];
 then
