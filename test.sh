@@ -1,5 +1,5 @@
 # Settings
-export NIMTEROP=master
+export NIMTEROP=v0.5.0
 
 # Shortcuts
 alias ix="curl -F 'f:1=<-' ix.io"
