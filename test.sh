@@ -1,5 +1,5 @@
 # Settings
-export NIMTEROP=v0.5.0
+export NIMTEROP=conan
 
 # Shortcuts
 alias ix="curl -F 'f:1=<-' ix.io"
@@ -51,7 +51,8 @@ cd ..
 
 test genotrance nimpcre
 
-test genotrance nimarchive
+test genotrance nimarchive conanjbb
+
 if [[ "$BRANCH" != "0.20.2" ]];
 then
   gclone dom96/choosenim
@@ -61,7 +62,7 @@ then
   cd ..
 fi
 
-test genotrance nimgit2
+test genotrance nimgit2 conanjbb
 
 if [[ "$BRANCH" != "0.20.2" ]];
 then
