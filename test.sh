@@ -1,5 +1,5 @@
 # Settings
-export NIMTEROP=conan
+export NIMTEROP=noast1
 
 # Shortcuts
 alias ix="curl -F 'f:1=<-' ix.io"
