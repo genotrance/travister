@@ -1,5 +1,5 @@
 # Settings
-export NIMTEROP=types
+export NIMTEROP=fixes-1
 
 # Shortcuts
 alias ix="curl -F 'f:1=<-' ix.io"
@@ -69,4 +69,4 @@ then
   test disruptek gittyup
 fi
 
-# test genotrance nimbass nimterop
+test genotrance nimbass nimterop
