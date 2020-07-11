@@ -1,5 +1,5 @@
 # Settings
-export NIMTEROP=fixes-1
+export NIMTEROP=jbbflags
 
 # Shortcuts
 alias ix="curl -F 'f:1=<-' ix.io"
@@ -62,7 +62,7 @@ then
   cd ..
 fi
 
-test genotrance nimgit2
+test genotrance nimgit2 jbbflags
 
 if [[ "$BRANCH" != "0.20.2" ]];
 then
