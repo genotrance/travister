@@ -1,5 +1,5 @@
 # Settings
-export NIMTEROP=fixes-3
+export NIMTEROP=skip
 
 # Shortcuts
 alias ix="curl -F 'f:1=<-' ix.io"
@@ -51,7 +51,7 @@ cd ..
 
 test genotrance nimpcre
 
-test genotrance nimarchive forward
+test genotrance nimarchive prebuilt
 
 if [[ "$BRANCH" != "0.20.2" ]];
 then
