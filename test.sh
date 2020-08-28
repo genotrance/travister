@@ -1,5 +1,6 @@
 # Settings
 export NIMTEROP=
+export NIM_SEMVER=(`echo $BRANCH | tr '.' ' '`)
 
 # Shortcuts
 alias ix="curl -F 'f:1=<-' ix.io"
@@ -51,22 +52,45 @@ cd ..
 
 test genotrance nimpcre
 
-test genotrance nimarchive iconvJBB
+test genotrance nimarchive
 
-if [[ "$BRANCH" != "0.20.2" ]];
-then
-  gclone dom96/choosenim
-  cd choosenim
-  nimble install -d -y  # Cannot nimble develop binary package
-  nimble test
+if [[ "$TRAVIS_CPU_ARCH" == "amd64" ]]
+  then
+  # amd64-only tests
+  
+  # nim >= 1.2.4 only, test choosenim
+  if [[ \
+      ( "${NIM_SEMVER[0]}" == 1 && "${NIM_SEMVER[1]}" == 2 && "${NIM_SEMVER[2]}" -ge 4 ) || \
+      ( "${NIM_SEMVER[0]}" == 1 && "${NIM_SEMVER[1]}" -ge 3 ) || \
+      "${NIM_SEMVER[0]}" -gt 1 \
+    ]]
+  then
+    gclone dom96/choosenim
+    cd choosenim
+    nimble install -d -y  # Cannot nimble develop binary package
+    nimble test
+    cd ..
+  fi
+
+  test genotrance nimgit2
+
+  # nim >= 1.0.0 only, test gittyup
+  if [[ "${NIM_SEMVER[0]}" -gt 0 ]]
+  then
+    test disruptek gittyup
+  fi
+  
+  # linux/macOS only, test nimbass
+  if [[ "$TRAVIS_OS_NAME" != "windows" ]]
+  then
+    test genotrance nimbass
+  fi
+ 
+  # Test nimble master
+  gcloneBranch nim-lang nimble
+  cd nimble/tests
+  nim c -r tester
+  cd ..
+  ./src/nimble install -y
   cd ..
 fi
-
-test genotrance nimgit2
-
-if [[ "$BRANCH" != "0.20.2" ]];
-then
-  test disruptek gittyup
-fi
-
-test genotrance nimbass
