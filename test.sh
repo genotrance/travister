@@ -47,6 +47,7 @@ cd test
 gcloneBranch nimterop nimterop $NIMTEROP
 cd nimterop
 nimble buildTimeit
+nimble buildLoaf
 nimble bt
 cd ..
 
