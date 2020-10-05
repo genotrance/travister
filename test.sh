@@ -1,5 +1,5 @@
 # Settings
-export NIMTEROP=
+export NIMTEROP=musl
 export NIM_SEMVER=(`echo $BRANCH | tr '.' ' '`)
 
 # Shortcuts
@@ -57,7 +57,7 @@ test genotrance nimarchive
 if [[ "$TRAVIS_CPU_ARCH" == "amd64" ]]
   then
   # amd64-only tests
-  
+
   # nim >= 1.2.4 only, test choosenim
   if [[ \
       ( "${NIM_SEMVER[0]}" == 1 && "${NIM_SEMVER[1]}" == 2 && "${NIM_SEMVER[2]}" -ge 4 ) || \
@@ -79,18 +79,18 @@ if [[ "$TRAVIS_CPU_ARCH" == "amd64" ]]
   then
     test disruptek gittyup
   fi
-  
+
   # linux/macOS only, test nimbass
   if [[ "$TRAVIS_OS_NAME" != "windows" ]]
   then
     test genotrance nimbass
   fi
- 
+
   # Test nimble master
-  gcloneBranch nim-lang nimble
-  cd nimble/tests
-  nim c -r tester
-  cd ..
-  ./src/nimble install -y
-  cd ..
+  #gcloneBranch nim-lang nimble
+  #cd nimble/tests
+  #nim c -r tester
+  #cd ..
+  #./src/nimble install -y
+  #cd ..
 fi
