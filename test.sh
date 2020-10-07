@@ -1,6 +1,6 @@
 # Settings
 export NIMTEROP=musl
-export NIM_SEMVER=(`echo $BRANCH | tr '.' ' '`)
+export NIM_SEMVER=(`nim --version | head -n 1 | perl -pe 's/.*Version ([0-9.]+).*/\1/' | tr '.' ' '`)
 
 # Shortcuts
 alias ix="curl -F 'f:1=<-' ix.io"
