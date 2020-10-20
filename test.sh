@@ -1,5 +1,5 @@
 # Settings
-export NIMTEROP=musl
+export NIMTEROP=
 export NIM_SEMVER=(`nim --version | head -n 1 | perl -pe 's/.*Version ([0-9.]+).*/\1/' | tr '.' ' '`)
 
 # Shortcuts
