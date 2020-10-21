@@ -13,7 +13,7 @@ gcloneBranch() {
   if [[ "$3" != "" ]]; then
     gco $3
   fi
-  nimble develop -y
+  nimble install -d -y
   cd ..
 }
 
@@ -68,7 +68,6 @@ if [[ "$TRAVIS_CPU_ARCH" == "amd64" ]]
   then
     gcloneBranch genotrance choosenim misc
     cd choosenim
-    nimble install -d -y  # Cannot nimble develop binary package
     nimble test
     cd ..
   fi
