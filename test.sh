@@ -76,10 +76,10 @@ if [[ "$TRAVIS_CPU_ARCH" == "amd64" ]]
   test genotrance nimgit2
 
   # nim >= 1.0.0 only, test gittyup
-  if [[ "${NIM_SEMVER[0]}" -gt 0 ]]
-  then
-    test disruptek gittyup
-  fi
+  #if [[ "${NIM_SEMVER[0]}" -gt 0 ]]
+  #then
+  #  test disruptek gittyup
+  #fi
 
   # linux/macOS only, test nimbass
   if [[ "$TRAVIS_OS_NAME" != "windows" ]]
