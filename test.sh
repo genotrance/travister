@@ -66,7 +66,7 @@ if [[ "$TRAVIS_CPU_ARCH" == "amd64" ]]
       "${NIM_SEMVER[0]}" -gt 1 \
     ]]
   then
-    gcloneBranch genotrance/choosenim misc
+    gcloneBranch genotrance choosenim misc
     cd choosenim
     nimble install -d -y  # Cannot nimble develop binary package
     nimble test
