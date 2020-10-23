@@ -13,7 +13,7 @@ gcloneBranch() {
   if [[ "$3" != "" ]]; then
     gco $3
   fi
-  nimble install -d -y
+  nimble install -y
   cd ..
 }
 
@@ -45,11 +45,6 @@ cd test
 
 # Nimterop setup
 gcloneBranch nimterop nimterop $NIMTEROP
-cd nimterop
-nimble buildTimeit
-nimble buildLoaf
-nimble bt
-cd ..
 
 test genotrance nimpcre
 
@@ -66,10 +61,7 @@ if [[ "$TRAVIS_CPU_ARCH" == "amd64" ]]
       "${NIM_SEMVER[0]}" -gt 1 \
     ]]
   then
-    gcloneBranch genotrance choosenim misc
-    cd choosenim
-    nimble test
-    cd ..
+    test genotrance choosenim
   fi
 
   test genotrance nimgit2
